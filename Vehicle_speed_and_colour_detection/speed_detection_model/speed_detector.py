@@ -2,6 +2,9 @@
 
 import cv2
 import dlib
+# run the command 
+""" python -m pip install dlib-19.22.99-cp310-cp310-win_amd64.whl
+"""
 import time
 import math
 
@@ -137,8 +140,9 @@ def trackMultipleObjects():
                         speed[i] = estimateSpeed([x1, y1, w1, h1], [x1, y2, w2, h2])
 
                     if speed[i] != None and y1 >= 180:
-                        if speed[i] > 60:
+                        if speed[i] > 50:
                             cv2.putText(resultImage, str(int(speed[i])) + "km/h", (int(x1 + w1 / 2), int(y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 100), 2)
+                            #write code here to get color of car,screenshot 
                         else:
                             cv2.putText(resultImage, str(int(speed[i])) + "km/h", (int(x1 + w1 / 2), int(y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 100, 0), 2)
 
