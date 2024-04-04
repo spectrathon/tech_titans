@@ -2,6 +2,7 @@
 import numpy as np
 import cv2
 import dlib
+import joblib
 # run the command 
 """ python -m pip install dlib-19.22.99-cp310-cp310-win_amd64.whl
 """
@@ -210,6 +211,13 @@ def trackMultipleObjects():
     cv2.destroyAllWindows()
     #out.release()
 
+def save_model():
+    joblib.dump(trackMultipleObjects, 'model.pkl')
+
+
 
 if __name__ == '__main__':
     trackMultipleObjects()
+
+    #Save the model after the pprocess ends
+    save_model()
