@@ -82,6 +82,11 @@ def trackMultipleObjects():
     car_id_exists = []
     speed = [None] * 1000
 
+    print("Enter color of car you want to find: ")
+    input_col = input(": ")
+    input_col = input_col.lower()
+
+
     #out = cv2.VideoWriter('outTraffic.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 10, (WIDTH, HEIGHT))
 
     while True:
@@ -188,8 +193,7 @@ def trackMultipleObjects():
                         #cv2.putText(resultImage, " Color: " + car_color + "km/h", (int(x1 + w1 / 2), int(y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 100), 2)
 
                         if speed[i] != None and y1 >= 280:
-    
-                            if speed[i] > 50:
+                            if ((speed[i] > 50) and (car_color == input_col)):
                                 if i not in car_id_exists:
                                     car_id_exists.append(i)
                                     s_id += 1
