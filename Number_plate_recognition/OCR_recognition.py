@@ -142,7 +142,7 @@ def predict(cfg):
     # cfg.model = cfg.model or "yolov8n.pt"
     # uploaded_file = st.file_uploader("Upload a video file (MP4)", type=["mp4"])
     # video_path = "uploaded_file.mp4"
-    cfg.source = r'C:\Users\ayshr\OneDrive\Desktop\Number-Plate\Tech_Titans_Spectrathon-2024\Number_plate_recognition\demo6.mp4'
+    cfg.source = r'C:\Users\ayshr\OneDrive\Desktop\Number-Plate\Tech_Titans_Spectrathon-2024\Number_plate_recognition\demo3.mp4'
     cfg.model= r'C:\Users\ayshr\OneDrive\Desktop\Number-Plate\Tech_Titans_Spectrathon-2024\Number_plate_recognition\best.pt'
     # cfg.source = video_path if uploaded_file is not None else default_path
         

@@ -13,9 +13,6 @@ import os
 # Classifier File
 carCascade = cv2.CascadeClassifier("vech.xml")
 
-# Video file capture
-video = cv2.VideoCapture("carsVideo.mp4")
-
 # Constant Declaration
 WIDTH = 1280
 HEIGHT = 720
@@ -66,7 +63,8 @@ def estimateSpeed(location1, location2):
 
 
 # tracking multiple objects
-def trackMultipleObjects():
+def trackMultipleObjects(video_path):
+    video = cv2.VideoCapture(video_path)
     s_id = 0
     rectangleColor = (0, 255, 255)
     #rectangleColor2 = (255, 0, 0)
@@ -167,7 +165,7 @@ def trackMultipleObjects():
             
             # Increased the box size
             ## Uncomment for better understanding
-            #cv2.rectangle(resultImage, (t_x - 10, t_y - 10), (t_x + t_w + 20, t_y + t_h + 20), rectangleColor, 4)
+            cv2.rectangle(resultImage, (t_x - 10, t_y - 10), (t_x + t_w + 20, t_y + t_h + 20), rectangleColor, 4)
             #cv2.rectangle(resultImage, (t_x, t_y), (t_x + t_w , t_y + t_h ), rectangleColor2, 4)
 
             carLocation2[carID] = [t_x, t_y, t_w, t_h]
@@ -224,4 +222,5 @@ def save_model():
 
 
 if __name__ == '__main__':
-    trackMultipleObjects()
+    trackMultipleObjects(video_path)
+    
