@@ -2,7 +2,6 @@
 
 
 
-### Table of Contents
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -45,6 +44,8 @@ Our project takes a video footage as the input and performs the following featur
     <li>Pandas</li>
     <li>dlib</li>
 </ul>
+
+![tech_stack](images_readme/t_stack.png "Built with")
 
 ## Getting Started
 <ol>
