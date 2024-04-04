@@ -37,10 +37,32 @@ Our project takes a video footage as the input and performs the following featur
 
 ### Built with
 <ul>
-    <li></li>
+    <li>Python</li>
+    <li>OpenCV</li>
+    <li>Flask</li>
+    <li>Tensorflow</li>
+    <li>Numpy</li>
+    <li>Pandas</li>
+    <li>dlib</li>
 </ul>
 
 ## Getting Started
+<ol>
+  <li>Install the dependencies using
+
+   > pip install -r requirements.txt
+
+   ![requirements.txt](images_readme/pip_install_1.png "requirements.txt")
+    
+  </li>
+
+  <li> Install the dlib library using the command
+
+  > python -m pip install dlib-19.22.99-cp310-cp310-win_amd64.whl
+
+  </li>
+  
+</ol>
 
 ## Usage
 
