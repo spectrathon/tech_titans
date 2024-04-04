@@ -39,7 +39,8 @@ Our project takes a video footage as the input and performs the following featur
     <li>Python</li>
     <li>OpenCV</li>
     <li>Flask</li>
-    <li>Tensorflow</li>
+    <li>Pytorch</li>
+    <li>YOLO (You Only Look Once) Model</li>
     <li>Numpy</li>
     <li>Pandas</li>
     <li>dlib</li>
@@ -67,3 +68,6 @@ Our project takes a video footage as the input and performs the following featur
 
 ## Usage
 
+![appscreen](images_readme/app_screen.png "appscreen")
+
+You can run the Streamlit app, upload the file and get the prediction

@@ -87,6 +87,7 @@ def trackMultipleObjects():
     input_col = input_col.lower()
 
 
+
     #out = cv2.VideoWriter('outTraffic.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 10, (WIDTH, HEIGHT))
 
     while True:
@@ -197,9 +198,11 @@ def trackMultipleObjects():
                                 if i not in car_id_exists:
                                     car_id_exists.append(i)
                                     s_id += 1
+                                    
                                     pic = resultImage[y1 - PADDING : y1 + h1 + PADDING, x1 - PADDING : x1 + w1 + PADDING]
                                     cv2.imwrite(f"{newpath}\\sc_frame_{s_id}_{speed[i]:{2}.{4}}_{car_color}.jpg", pic)
                                     cv2.putText(resultImage, " Color: " + car_color + " : " + str(int(speed[i])) + "km/h", (int(x1 + w1 / 2), int(y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 100), 2)
+                                
                             else:
                                 cv2.putText(resultImage, " Color: " + car_color + " : " + str(int(speed[i])) + "km/h", (int(x1 + w1 / 2), int(y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 100, 0), 2)
                             
