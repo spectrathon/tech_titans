@@ -3,6 +3,7 @@ import torch
 import easyocr
 import cv2
 import numpy as np
+# import streamlit as st
 import os
 #importing classes for object detection and other cv task
 from ultralytics.yolo.engine.predictor import BasePredictor
@@ -139,11 +140,15 @@ class DetectionPredictor(BasePredictor):
 @hydra.main(version_base=None, config_path=str(DEFAULT_CONFIG.parent), config_name=DEFAULT_CONFIG.name)
 def predict(cfg):
     # cfg.model = cfg.model or "yolov8n.pt"
+    # uploaded_file = st.file_uploader("Upload a video file (MP4)", type=["mp4"])
+    # video_path = "uploaded_file.mp4"
+    cfg.source = r'C:\Users\ayshr\OneDrive\Desktop\Number-Plate\Tech_Titans_Spectrathon-2024\Number_plate_recognition\demo6.mp4'
     cfg.model= r'C:\Users\ayshr\OneDrive\Desktop\Number-Plate\Tech_Titans_Spectrathon-2024\Number_plate_recognition\best.pt'
-
+    # cfg.source = video_path if uploaded_file is not None else default_path
+        
     cfg.imgsz = check_imgsz(cfg.imgsz, min_dim=2)  # check image size
     # cfg.source = cfg.source if cfg.source is not None else ROOT / "assets"
-    cfg.source = r'C:\Users\ayshr\OneDrive\Desktop\Number-Plate\Tech_Titans_Spectrathon-2024\Number_plate_recognition\demo6.mp4'
+    
     predictor = DetectionPredictor(cfg)
     predictor()
     print("Prediction------------------------------------")
