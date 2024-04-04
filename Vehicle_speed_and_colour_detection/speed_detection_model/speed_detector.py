@@ -2,12 +2,12 @@
 import numpy as np
 import cv2
 import dlib
+import joblib
 # run the command 
 """ python -m pip install dlib-19.22.99-cp310-cp310-win_amd64.whl
 """
 import time
 import math
-import csv
 import os
 
 # Classifier File
@@ -20,14 +20,6 @@ video = cv2.VideoCapture("carsVideo.mp4")
 WIDTH = 1280
 HEIGHT = 720
 
-# CSV Reader Func
-color_ranges = {}
-with open("colors.csv", mode = 'r') as file:
-    reader = csv.reader(file)
-
-    for row in reader:
-        color_ranges[row[1]] = [row[3], row[4], row[5]]
-
 newpath = 'speeding_vehicles' 
 if not os.path.exists(newpath):
     os.makedirs(newpath)
@@ -37,21 +29,30 @@ if not os.path.exists(newpath):
 def detect_car_color(image, x, y, w, h):
     # Convert the region of interest to HSV color space
     roi = image[y:y+h, x:x+w]
-    A = cv2.mean(roi)
-    #print(A)
-    a_r = A[0] if(A[0] != np.NaN) else 0
-    a_g = A[1] if(A[2] != np.NaN) else 0
-    a_b = A[2] if(A[2] != np.NaN) else 0
+    hsv_roi = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
+
+    # Define color ranges for common car colors (you can adjust these)
+    color_ranges = {
+                    'black': [[100, 100, 100], [0, 0, 0]],
+                    'white': [[255, 255, 255], [200, 200, 200]],
+                    'red1': [[180, 255, 255], [159, 50, 70]],
+                    'red2': [[9, 255, 255], [0, 50, 70]],
+                    'green': [[89, 255, 255], [36, 50, 70]],
+                    'blue': [[128, 255, 255], [90, 50, 70]],
+                    'yellow': [[35, 255, 255], [25, 50, 70]],
+                    'purple': [[158, 255, 255], [129, 50, 70]],
+                    'orange': [[24, 255, 255], [10, 50, 70]],
+                    'gray': [[180, 18, 230], [0, 0, 40]]
+                    }
 
     # Check color presence in the region of interest
-    min_dist = 10000;
-    for color, [r, g, b] in color_ranges.items():
-        dist = abs(int(r) - int(a_r)) + abs(int(b)  - int(a_b)) + abs(int(g)  - int(a_g))
-        if dist < min_dist:
-            min_dist = dist
-            req_color = color
-
-    return req_color
+    for color, [upper, lower] in color_ranges.items():
+        lower = np.array(lower, dtype=np.uint8)
+        upper = np.array(upper, dtype=np.uint8)
+        mask = cv2.inRange(hsv_roi, lower, upper)
+        if cv2.countNonZero(mask) > 0:
+            return color
+    return None
 
 
 # estimate speed function
@@ -210,6 +211,13 @@ def trackMultipleObjects():
     cv2.destroyAllWindows()
     #out.release()
 
+def save_model():
+    joblib.dump(trackMultipleObjects, 'model.pkl')
+
+
 
 if __name__ == '__main__':
     trackMultipleObjects()
+
+    #Save the model after the pprocess ends
+    save_model()
