@@ -71,5 +71,7 @@ Our project takes a video footage as the input and performs the following featur
 ![appscreen](images_readme/app_screen.png "appscreen")
 
 You can run the Streamlit app, upload the file and get the prediction
+
 To analyse a cctv footage of vehicles and find its number plate using OCR(Optical Character Recognition)
+
 Helps detect speed of vehicles using cctv footage showing side view of vehicles. The feature detects the color of the vehicle.
