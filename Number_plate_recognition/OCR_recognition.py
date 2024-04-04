@@ -138,9 +138,12 @@ class DetectionPredictor(BasePredictor):
 
 @hydra.main(version_base=None, config_path=str(DEFAULT_CONFIG.parent), config_name=DEFAULT_CONFIG.name)
 def predict(cfg):
-    cfg.model = cfg.model or "yolov8n.pt"
+    # cfg.model = cfg.model or "yolov8n.pt"
+    cfg.model= r'C:\Users\ayshr\OneDrive\Desktop\Number-Plate\Tech_Titans_Spectrathon-2024\Number_plate_recognition\best.pt'
+
     cfg.imgsz = check_imgsz(cfg.imgsz, min_dim=2)  # check image size
-    cfg.source = cfg.source if cfg.source is not None else ROOT / "assets"
+    # cfg.source = cfg.source if cfg.source is not None else ROOT / "assets"
+    cfg.source = r'C:\Users\ayshr\OneDrive\Desktop\Number-Plate\Tech_Titans_Spectrathon-2024\Number_plate_recognition\demo6.mp4'
     predictor = DetectionPredictor(cfg)
     predictor()
     print("Prediction------------------------------------")
