@@ -22,4 +22,5 @@ def main():
         trackMultipleObjects(uploaded_file, model_path="path_to_your_speed_model.pt")
         
     
-
+if __name__ == "__main__":
+    main()
