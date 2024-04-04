@@ -218,6 +218,3 @@ def save_model():
 
 if __name__ == '__main__':
     trackMultipleObjects()
-
-    #Save the model after the pprocess ends
-    save_model()
