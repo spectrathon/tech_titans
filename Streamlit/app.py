@@ -14,14 +14,12 @@ def main():
     uploaded_file = None
 
     if selected_option == "Perform OCR recognition on Number Plate":
-        st.write("Upload a video file to perform OCR recognition on Number Plate:")
-        uploaded_file = st.file_uploader("Choose a video file", type=["mp4", "avi"])
+          predict()
     elif selected_option == "Detect speed":
         st.write("Upload a video file to detect speed:")
         uploaded_file = st.file_uploader("Choose a video file", type=["mp4", "avi"])
-    
-    
-    
-    
+
+        trackMultipleObjects(uploaded_file, model_path="path_to_your_speed_model.pt")
+        
     
 
